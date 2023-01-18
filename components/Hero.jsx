@@ -8,9 +8,9 @@ const Hero = ({heading, message}) => {
       <div className='p-5 text-white z-[2] mt-[-10rem]'>
         <h2 className='text-5xl font-bold'>{heading}</h2>
         <p className='py-5 text-xl'>{message}</p>
-        <li>
+       
         <Link className='px-8 py-2 border' href="/login">Login</Link>
-      </li>
+      
        
       </div>
     </div>

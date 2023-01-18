@@ -15,7 +15,7 @@ const Navbar = () => {
     const changeColor = () => {
       if (window.scrollY >= 90) {
         setColor('#ffffff');
-        setTextColor('#000000');
+        setTextColor('#a49cdb');
       } else {
         setColor('transparent');
         setTextColor('#a49cdb');
@@ -32,7 +32,7 @@ const Navbar = () => {
       <div className='max-w-[1240px] m-auto flex justify-between items-center p-4 text-white'>
         <Link href='/'>
           <h1 style={{ color: `${textColor}` }} className='font-bold text-4xl'>
-            Yum.com
+            Activity Recommender
           </h1>
         </Link>
         <ul style={{ color: `${textColor}` }} className='hidden sm:flex'>
@@ -40,7 +40,7 @@ const Navbar = () => {
             <Link href='/'>Home</Link>
           </li>
           <li className='p-4'>
-            <Link href='/#gallery'>Restaurants and Bars</Link>
+            <Link href='/#gallery'>Activity Recommender</Link>
           </li>
           <li className='p-4'>
             <Link href='/work'>About Us</Link>
