@@ -5,7 +5,7 @@ const Portfolio = () => {
   return (
     <>
     <div class="bg-white-800">
-    <div className='max-w-[1240px] mx-auto py-16 text-center '>
+    <div className='max-w-[1240px] mx-auto py-16 text-center mt-10 '>
       <h1 className='font-bold text-3xl p-4'>About us</h1>
 
       <div className='grid justify-evenly lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 w-full ml-2 mr-2'>

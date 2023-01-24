@@ -1,14 +1,13 @@
 import React from 'react'
-import { useSession, signIn, signOut } from 'next-auth/react'
-const register = () => {
- 
-   
-        return (
-            <div>
-                <p>Register</p>
-                
-            </div>  
-          )
+import Info from '../components/Info'
+
+
+const Register = () => {
+  return (
+    <div>
+        <Info></Info>
+    </div>
+  )
 }
 
-export default register
+export default Register
