@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSession, signIn, signOut } from 'next-auth/react'
-import Register from '../components/Info'
+// import Register from '../components/Info'
 import { useRef, useState } from 'react'
 import ButtonRegister from '../components/ButtonRegister'
 
 
-const register = () => {
+const pageRegister = () => {
   
    
     const [isForm, setIsForm] = useState({
@@ -195,4 +195,4 @@ const register = () => {
       )
     }
 
-export default register
+export default pageRegister

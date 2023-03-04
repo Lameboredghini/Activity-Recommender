@@ -2,7 +2,7 @@ import React from 'react'
 import Info from '../components/Info'
 
 
-const Register = () => {
+const register = () => {
   return (
     <div>
         <Info></Info>
@@ -10,4 +10,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default register
