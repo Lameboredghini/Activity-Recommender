@@ -3,8 +3,8 @@ import { signIn } from "next-auth/react";
 
 const LoginCard = () => {
   return (
-    <div className="mt-40">
-      <div className="max-w-md mx-auto bg-white shadow-xl rounded my-8 p-7">
+    <div className="mt-30 pt-10">
+      <div className="max-w-lg mx-auto bg-white shadow-xl rounded my-8 pl-7 pr-7 pb-7">
         <div className="text-center text-gray-600 py-4">Sign in with</div>
         <div className="flex justify-center mb-10">
           <button className="flex items-center bg-gray-100 shadow-md border border-gray-200 rounded px-4 py-2 mr-2">
@@ -17,7 +17,7 @@ const LoginCard = () => {
             </svg>
             <div className="text-indigo-700">Facebook</div>
           </button>
-          <button className="flex items-center bg-gray-100 shadow-md border border-gray-200 rounded px-4 py-2 mr-2">
+          <button className="flex items-center bg-gray-100 shadow-md border border-gray-200 rounded px-4 py-2 mr-2" onClick={() => signIn()}>
             <svg
               className="fill-current text-gray-600 w-4 h-4 mr-2"
               xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@ const LoginCard = () => {
             <div className="text-indigo-700">Google</div>
           </button>
         </div>
-        <div className="bg-gray-200 pt-8 pb-16">
+        <div className="bg-gray-200 pt-4 pb-4">
           <div className="text-center text-gray-600 mb-6">
             Or sign in with Email & Password
           </div>
@@ -44,7 +44,7 @@ const LoginCard = () => {
                 </svg>
               </span>
               <input
-                className="w-full h-12 focus:outline-none"
+                className="w-80 h-12 focus:outline-none"
                 type="email"
                 name="email"
                 placeholder="Email"

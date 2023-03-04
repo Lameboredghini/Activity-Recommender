@@ -9,8 +9,8 @@ const Login = () => {
   if (session) {
     return (
       <div>
-        <div className="flex items-center justify-center h-screen mb-12 bg-fixed bg-center bg-cover custom-img">
-          <div className="max-w-[1240px] mx-auto py-16 text-center">
+        <div className="flex items-center justify-center h-screen mb-0 bg-fixed bg-center bg-cover custom-img">
+          <div className="max-w-[1240px] mx-auto py-16 text-center text-white">
             <h1 className="font-bold text-2xl p-4">
               Welcome, {session.user.name}
             </h1>
@@ -36,7 +36,7 @@ const Login = () => {
   } else {
     return (
       <div>
-        <div className="flex items-center justify-center h-screen mb-12 bg-fixed bg-center bg-cover custom-img">
+        <div className="flex items-center justify-center h-screen mb-0 bg-fixed bg-center bg-cover custom-img">
           {/* Overlay */}
           <div className="absolute top-0 left-0 right-0 bottom-0 bg-black/70 z-[-1]" />
           <div className="p-5 text-white z-[2] mt-[-10rem]">
