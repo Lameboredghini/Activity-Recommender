@@ -9,6 +9,7 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
+import SimpleMap from "./Map";
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
@@ -46,6 +47,13 @@ const filters = [
       { value: "3", label: "Upto 20 km", checked: true },
       { value: "4", label: "Upto 30 km", checked: false },
       { value: "5", label: "No restriction", checked: false },
+    ],
+  },
+  {
+    id: "open",
+    name: "Open",
+    options: [
+      { value: "1", label: "Open now", checked: true },
     ],
   },
   // {
@@ -119,18 +127,10 @@ export default function Filter() {
                   {/* Filters */}
                   <form className="mt-4 border-t border-gray-200">
                     <h3 className="sr-only">Categories</h3>
-                    <ul
-                      role="list"
-                      className="px-2 py-3 font-medium text-gray-900"
-                    >
-                      {subCategories.map((category) => (
-                        <li key={category.name}>
-                          <a href={category.href} className="block px-2 py-3">
-                            {category.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
+
+                    <div>
+                      <SimpleMap />
+                    </div>
 
                     {filters.map((section) => (
                       <Disclosure
@@ -275,17 +275,9 @@ export default function Filter() {
               {/* Filters */}
               <form className="hidden lg:block">
                 <h3 className="sr-only">Categories</h3>
-                <ul
-                  role="list"
-                  className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900"
-                >
-                  {subCategories.map((category) => (
-                    <li key={category.name}>
-                      <a href={category.href}>{category.name}</a>
-                    </li>
-                  ))}
-                </ul>
-
+                <div>
+                  <SimpleMap />
+                </div>
                 {filters.map((section) => (
                   <Disclosure
                     as="div"
