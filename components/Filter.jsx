@@ -106,9 +106,9 @@ export default function Filter() {
   const [rating, setRating] = useState("3");
   const [distance, setDistance] = useState("15000");
   const [open, setOpen] = useState("true");
-  const [latitude, setLatitude] = useState(null);
+  const [latitude, setLatitude] = useState(43.689160);
+  const [longitude, setLongitude] = useState(-79.489843);
   const [getLocBool, setLocBool] = useState(false);
-  const [longitude, setLongitude] = useState(null);
 
   function handleChange(sectionId, optionId) {
     if (sectionId == "rating") {
@@ -356,7 +356,7 @@ export default function Filter() {
                 <form className="hidden lg:block">
                   <h3 className="sr-only">Categories</h3>
                   <div>
-                    <SimpleMap />
+                    <SimpleMap latitude={latitude} longitude={longitude} />
                   </div>
                   {filters.map((section) => (
                     <Disclosure
