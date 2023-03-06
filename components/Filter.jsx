@@ -420,7 +420,7 @@ export default function Filter() {
                   ))}
                 </form>
 
-                {/* Product grid */}
+                {/* Product grid */}    
                 <div className="lg:col-span-3  ">
                   <button
                     onClick={() => {
@@ -430,6 +430,16 @@ export default function Filter() {
                     Enable Location
                   </button>
                   <br></br>
+                  <>
+                    <button className="bg-blue-400 p-2 rounded-full" onClick={()=>{
+                        getData()
+                    }}>Fetch Data</button>
+            {(result?.filter((item)=>{
+                return item.rating>=values.rating
+            })).map((item)=>{
+                return <Card name={item.name} rating={item.rating}/>    
+            })}
+        </>
                   <div class="flex justify-center"></div>
   <div
     class="flex flex-col rounded-lg bg-white shadow-lg dark:bg-neutral-700 md:max-w-l md:flex-row">
@@ -496,16 +506,7 @@ export default function Filter() {
             </section>
           </main>
         </div>
-        <>
-                    <button className="bg-blue-400 p-2 rounded-full" onClick={()=>{
-                        getData()
-                    }}>Fetch Data</button>
-            {(result?.filter((item)=>{
-                return item.rating>=values.rating
-            })).map((item)=>{
-                return <Card name={item.name} rating={item.rating}/>    
-            })}
-        </>
+   
       </div>
     </>
   );
