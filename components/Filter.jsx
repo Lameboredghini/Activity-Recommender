@@ -12,6 +12,7 @@ import {
 import SimpleMap from "./Map";
 import NavbarDark from "./NavbarDark";
 import axios from "axios";
+import Card from "./Card";
 
 const sortOptions = [
   { name: "Amusement Parks", href: "#", current: false },
@@ -90,27 +91,24 @@ export default function Filter() {
   const [result, setResult] = useState(null);
   async function getData() {
     let dataObject = {
-      latitude: 13.067439,
-      longitude: 80.237617,
-      radius: 1500,
+      latitude: latitude,
+      longitude: longitude,
+      radius: parseInt(distance,10),
       activity: "beauty_salon",
-      opennow: true,
+      opennow: 1?true:false,
     };
     let response = await axios.post("http://127.0.0.1:8000/test", dataObject);
     // console.log('response', response.data)
     setResult(response.data.data.results);
   }
-  useEffect(() => {
-    getData();
-  }, []);
-
+  console.log(result)
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [rating, setRating] = useState("3");
   const [distance, setDistance] = useState("15000");
   const [open, setOpen] = useState("true");
-  const [latitude, setLatitude] = useState("");
+  const [latitude, setLatitude] = useState(null);
   const [getLocBool, setLocBool] = useState(false);
-  const [longitude, setLongitude] = useState("");
+  const [longitude, setLongitude] = useState(null);
 
   function handleChange(sectionId, optionId) {
     if (sectionId == "rating") {
@@ -129,9 +127,12 @@ export default function Filter() {
     };
     console.log(values);
   }
+//   const filtered_result=result?.filter((item)=>{
+//     return item>=values.rating
+//   })
 
   const getLocation = () => {
-    setLocBool(!getLocBool);
+    setLocBool(true);
   };
 
   useEffect(() => {
@@ -433,6 +434,16 @@ export default function Filter() {
             </section>
           </main>
         </div>
+        <>
+                    <button className="bg-blue-400 p-2 rounded-full" onClick={()=>{
+                        getData()
+                    }}>Fetch Data</button>
+            {(result?.filter((item)=>{
+                return item.rating>=values.rating
+            })).map((item)=>{
+                return <Card name={item.name} rating={item.rating}/>    
+            })}
+        </>
       </div>
     </>
   );
