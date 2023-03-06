@@ -12,6 +12,7 @@ import {
 import SimpleMap from "./Map";
 import NavbarDark from "./NavbarDark";
 import axios from "axios";
+import Card from "./Card";
 
 const sortOptions = [
   { name: "Amusement Parks", href: "#", current: false },
@@ -90,20 +91,17 @@ export default function Filter() {
   const [result, setResult] = useState(null);
   async function getData() {
     let dataObject = {
-      latitude: 43.689160,
-      longitude: -79.489843,
-      radius: 1500,
+      latitude: latitude,
+      longitude: longitude,
+      radius: parseInt(distance,10),
       activity: "beauty_salon",
-      opennow: true,
+      opennow: 1?true:false,
     };
     let response = await axios.post("http://127.0.0.1:8000/test", dataObject);
     // console.log('response', response.data)
     setResult(response.data.data.results);
   }
-  useEffect(() => {
-    getData();
-  }, []);
-
+  console.log(result)
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [rating, setRating] = useState("3");
   const [distance, setDistance] = useState("15000");
@@ -129,9 +127,12 @@ export default function Filter() {
     };
     console.log(values);
   }
+//   const filtered_result=result?.filter((item)=>{
+//     return item>=values.rating
+//   })
 
   const getLocation = () => {
-    setLocBool(!getLocBool);
+    setLocBool(true);
   };
 
   useEffect(() => {
@@ -420,7 +421,7 @@ export default function Filter() {
                 </form>
 
                 {/* Product grid */}
-                <div className="lg:col-span-3">
+                <div className="lg:col-span-3  ">
                   <button
                     onClick={() => {
                       getLocation();
@@ -428,11 +429,83 @@ export default function Filter() {
                   >
                     Enable Location
                   </button>
+                  <br></br>
+                  <div class="flex justify-center"></div>
+  <div
+    class="flex flex-col rounded-lg bg-white shadow-lg dark:bg-neutral-700 md:max-w-l md:flex-row">
+    <img
+      class="h-66 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+      src="https://i.ibb.co/qgW54Cv/FM7-8632-vert.jpg"
+      alt="" />
+    <div class="flex flex-col justify-start p-6">
+      <h5
+        class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
+        Activity Name: 1
+      </h5>
+      <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+      Nothing is made, nothing disappears. The same changes, at the same places, never stopping
+      </p>   <br></br>   <br></br>
+      <p class="text-xs text-neutral-500 dark:text-neutral-300">
+        Rating: 4.8
+      </p>
+    </div>
+  </div>
+  {/* <br></br>
+  <div
+    class="flex flex-row rounded-lg bg-white shadow-lg dark:bg-neutral-700 md:max-w-l md:flex-row">
+    <img
+      class="h-66 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+      src="https://i.ibb.co/qgW54Cv/FM7-8632-vert.jpg"
+      alt="" />
+    <div class="flex flex-col justify-start p-6">
+      <h5
+        class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
+        Activity Name: 2      </h5>
+      <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+      Nothing is made, nothing disappears. The same changes, at the same places, never stopping
+      </p>    <br></br>   <br></br>
+      <p class="text-xs text-neutral-500 dark:text-neutral-300">
+        Rating: 4.2
+      </p>
+    </div>
+  </div>
+  <div
+    class="flex flex-col rounded-lg bg-white shadow-lg dark:bg-neutral-700 md:max-w-l md:flex-row">
+    <img
+      class="h-66 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+      src="https://i.ibb.co/qgW54Cv/FM7-8632-vert.jpg"
+      alt="" />
+    <div class="flex flex-col justify-start p-6">
+      <h5
+        class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
+        Activity Name: 2      </h5>
+      <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+      Nothing is made, nothing disappears. The same changes, at the same places, never stopping
+      </p>    <br></br>   <br></br>
+      <p class="text-xs text-neutral-500 dark:text-neutral-300">
+        Rating: 4.2
+      </p>
+    </div>
+  </div> */}
+
+
+
                 </div>
+                
               </div>
             </section>
           </main>
         </div>
+        <>
+                    <button className="bg-blue-400 p-2 rounded-full" onClick={()=>{
+                        getData()
+                    }}>Fetch Data</button>
+            {(result?.filter((item)=>{
+                return item.rating>=values.rating
+            })).map((item)=>{
+                return <Card name={item.name} rating={item.rating}/>    
+            })}
+        </>
       </div>
     </>
   );
