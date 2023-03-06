@@ -11,6 +11,7 @@ import {
 } from "@heroicons/react/20/solid";
 import SimpleMap from "./Map";
 import NavbarDark from "./NavbarDark";
+import axios from "axios";
 
 const sortOptions = [
   { name: "Amusement Parks", href: "#", current: false },
@@ -86,6 +87,23 @@ function classNames(...classes) {
 }
 
 export default function Filter() {
+  const [result, setResult] = useState(null);
+  async function getData() {
+    let dataObject = {
+      latitude: 13.067439,
+      longitude: 80.237617,
+      radius: 1500,
+      activity: "beauty_salon",
+      opennow: true,
+    };
+    let response = await axios.post("http://127.0.0.1:8000/test", dataObject);
+    // console.log('response', response.data)
+    setResult(response.data.data.results);
+  }
+  useEffect(() => {
+    getData();
+  }, []);
+
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [rating, setRating] = useState("3");
   const [distance, setDistance] = useState("15000");
