@@ -3,11 +3,11 @@ import GoogleMapReact from 'google-map-react';
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-export default function SimpleMap(){
+const SimpleMap = (props) => {
   const defaultProps = {
     center: {
-      lat: 12.8379119,
-      lng: 80.1316818
+      lat: 43.689160,
+      lng: -79.489843
     },
     zoom: 12
   };
@@ -21,11 +21,13 @@ export default function SimpleMap(){
         defaultZoom={defaultProps.zoom}
       >
         <AnyReactComponent
-          lat={12.8379119}
-          lng={80.1316818}
+          lat={parseFloat(props.latitude)}
+          lng={parseFloat(props.longitude)}
           text="My Marker"
         />
       </GoogleMapReact>
     </div>
   );
 }
+
+export default SimpleMap

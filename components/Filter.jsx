@@ -90,8 +90,8 @@ export default function Filter() {
   const [result, setResult] = useState(null);
   async function getData() {
     let dataObject = {
-      latitude: 13.067439,
-      longitude: 80.237617,
+      latitude: 43.689160,
+      longitude: -79.489843,
       radius: 1500,
       activity: "beauty_salon",
       opennow: true,
@@ -108,9 +108,9 @@ export default function Filter() {
   const [rating, setRating] = useState("3");
   const [distance, setDistance] = useState("15000");
   const [open, setOpen] = useState("true");
-  const [latitude, setLatitude] = useState("");
+  const [latitude, setLatitude] = useState(43.689160);
+  const [longitude, setLongitude] = useState(-79.489843);
   const [getLocBool, setLocBool] = useState(false);
-  const [longitude, setLongitude] = useState("");
 
   function handleChange(sectionId, optionId) {
     if (sectionId == "rating") {
@@ -355,7 +355,7 @@ export default function Filter() {
                 <form className="hidden lg:block">
                   <h3 className="sr-only">Categories</h3>
                   <div>
-                    <SimpleMap />
+                    <SimpleMap latitude={latitude} longitude={longitude} />
                   </div>
                   {filters.map((section) => (
                     <Disclosure
