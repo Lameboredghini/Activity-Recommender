@@ -12,11 +12,20 @@ import {
 import SimpleMap from "./Map";
 
 const sortOptions = [
-  { name: "Most Popular", href: "#", current: true },
-  { name: "Best Rating", href: "#", current: false },
-  { name: "Newest", href: "#", current: false },
-  { name: "Price: Low to High", href: "#", current: false },
-  { name: "Price: High to Low", href: "#", current: false },
+  { name: "Amusement Parks", href: "#", current: false },
+  { name: "Bars", href: "#", current: false },
+  { name: "Beauty Salons", href: "#", current: false },
+  { name: "Cafe", href: "#", current: false },
+  { name: "Cinemas", href: "#", current: false },
+  { name: "Clubs", href: "#", current: false },
+  { name: "Galleries", href: "#", current: false },
+  { name: "Museums", href: "#", current: false },
+  { name: "Parks", href: "#", current: false },
+  { name: "Restaurants", href: "#", current: true },
+  { name: "Shopping Centres", href: "#", current: false },
+  { name: "Sports Club", href: "#", current: false },
+  { name: "Swimming pools", href: "#", current: false },
+  { name: "Theatres", href: "#", current: false },
 ];
 const subCategories = [
   { name: "Beauty Salon", href: "#" },
@@ -42,10 +51,10 @@ const filters = [
     id: "distance",
     name: "Distance",
     options: [
-      { value: "1", label: "Upto 10 km", checked: false },
-      { value: "2", label: "Upto 15 km", checked: false },
-      { value: "3", label: "Upto 20 km", checked: true },
-      { value: "4", label: "Upto 30 km", checked: false },
+      { value: "1", label: "Upto 5 km", checked: false },
+      { value: "2", label: "Upto 10 km", checked: false },
+      { value: "3", label: "Upto 15 km", checked: true },
+      { value: "4", label: "Upto 20 km", checked: false },
       { value: "5", label: "No restriction", checked: false },
     ],
   },
@@ -128,10 +137,6 @@ export default function Filter() {
                   <form className="mt-4 border-t border-gray-200">
                     <h3 className="sr-only">Categories</h3>
 
-                    <div>
-                      <SimpleMap />
-                    </div>
-
                     {filters.map((section) => (
                       <Disclosure
                         as="div"
@@ -206,7 +211,7 @@ export default function Filter() {
               <Menu as="div" className="relative inline-block text-left">
                 <div>
                   <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                    Sort
+                    Activity
                     <ChevronDownIcon
                       className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
@@ -248,13 +253,13 @@ export default function Filter() {
                 </Transition>
               </Menu>
 
-              <button
+              {/* <button
                 type="button"
                 className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7"
               >
                 <span className="sr-only">View grid</span>
                 <Squares2X2Icon className="h-5 w-5" aria-hidden="true" />
-              </button>
+              </button> */}
               <button
                 type="button"
                 className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
