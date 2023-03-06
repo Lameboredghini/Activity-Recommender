@@ -141,6 +141,7 @@ export default function Filter() {
       setLongitude(position.coords.longitude);
       console.log("Latitude is :", position.coords.latitude);
       console.log("Longitude is :", position.coords.longitude);
+      // window.location.reload()
     });
   }, [getLocBool]);
 
