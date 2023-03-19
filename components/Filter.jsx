@@ -77,14 +77,16 @@ function classNames(...classes) {
 
 export default function Filter() {
   const [result, setResult] = useState(null);
+  const [activity,setActivity]=useState("")
   async function getData() {
     let dataObject = {
       latitude: latitude,
       longitude: longitude,
-      radius: parseInt(distance, 10),
-      activity: "beauty_salon",
-      opennow: 1 ? true : false,
+      radius: parseInt(distance,10),
+      activity: activity,
+      opennow: 1?true:false,
     };
+    console.log('dataObject is ',dataObject)
     let response = await axios.post("http://127.0.0.1:8000/test", dataObject);
     // console.log('response', response.data)
     setResult(response.data.data.results);
@@ -97,6 +99,7 @@ export default function Filter() {
   const [latitude, setLatitude] = useState(43.68916);
   const [longitude, setLongitude] = useState(-79.489843);
   const [getLocBool, setLocBool] = useState(false);
+//   const [longitude, setLongitude] = useState(null);
 
   function handleChange(sectionId, optionId) {
     if (sectionId == "rating") {
@@ -299,6 +302,11 @@ export default function Filter() {
                             {({ active }) => (
                               <a
                                 href={option.href}
+                                onClick={()=>{
+                                    if(active){
+                                        setActivity(option.name)
+                                    }
+                                }}
                                 className={classNames(
                                   option.current
                                     ? "font-medium text-gray-900"
