@@ -77,16 +77,16 @@ function classNames(...classes) {
 
 export default function Filter() {
   const [result, setResult] = useState(null);
-  const [activity,setActivity]=useState("")
+  const [activity, setActivity] = useState("");
   async function getData() {
     let dataObject = {
       latitude: latitude,
       longitude: longitude,
-      radius: parseInt(distance,10),
+      radius: parseInt(distance, 10),
       activity: activity,
-      opennow: 1?true:false,
+      opennow: 1 ? true : false,
     };
-    console.log('dataObject is ',dataObject)
+    console.log("dataObject is ", dataObject);
     let response = await axios.post("http://127.0.0.1:8000/test", dataObject);
     // console.log('response', response.data)
     setResult(response.data.data.results);
@@ -99,7 +99,7 @@ export default function Filter() {
   const [latitude, setLatitude] = useState(43.68916);
   const [longitude, setLongitude] = useState(-79.489843);
   const [getLocBool, setLocBool] = useState(false);
-//   const [longitude, setLongitude] = useState(null);
+  //   const [longitude, setLongitude] = useState(null);
 
   function handleChange(sectionId, optionId) {
     if (sectionId == "rating") {
@@ -302,10 +302,10 @@ export default function Filter() {
                             {({ active }) => (
                               <a
                                 href={option.href}
-                                onClick={()=>{
-                                    if(active){
-                                        setActivity(option.name)
-                                    }
+                                onClick={() => {
+                                  if (active) {
+                                    setActivity(option.name);
+                                  }
                                 }}
                                 className={classNames(
                                   option.current
@@ -444,27 +444,6 @@ export default function Filter() {
                         return <Card name={item.name} rating={item.rating} />;
                       })}
                   </>
-                  <div class="flex justify-center"></div>
-                  <div class="flex flex-col rounded-lg bg-white shadow-lg dark:bg-neutral-700 md:max-w-l md:flex-row">
-                    <img
-                      class="h-66 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                      src="https://i.ibb.co/qgW54Cv/FM7-8632-vert.jpg"
-                      alt=""
-                    />
-                    <div class="flex flex-col justify-start p-6">
-                      <h5 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
-                        Activity Name: 1
-                      </h5>
-                      <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                        Nothing is made, nothing disappears. The same changes,
-                        at the same places, never stopping
-                      </p>{" "}
-                      <br></br> <br></br>
-                      <p class="text-xs text-neutral-500 dark:text-neutral-300">
-                        Rating: 4.8
-                      </p>
-                    </div>
-                  </div>
                   {/* <br></br>
   <div
     class="flex flex-row rounded-lg bg-white shadow-lg dark:bg-neutral-700 md:max-w-l md:flex-row">

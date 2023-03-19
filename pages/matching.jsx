@@ -9,8 +9,8 @@ const matching = () => {
     const [formData, setFormData] = useState({
         name: "",
         time: "1",
-        selectedCuisine: "",
-        selectedActivities: [],
+        activity: "",
+        cuisine: "",
         budget: "",
         selectedPayment: "",
     });
@@ -20,24 +20,7 @@ const matching = () => {
         console.log(formData);
     };
 
-    const handleActivitiesChange = (e) => {
-        const { value } = e.target;
-        setFormData((prevFormData) => {
-            const { selectedActivities: prevSelectedActivities } = prevFormData;
-            if (prevSelectedActivities.includes(value)) {
-                return {
-                    ...prevFormData,
-                    selectedActivities: prevSelectedActivities.filter((selected) => selected !== value),
-                };
-            }
-            return {
-                ...prevFormData,
-                selectedActivities: [...prevSelectedActivities, value],
-            };
-        });
-    };
-
-    const { name, time, selectedCuisine, selectedActivities, budget, selectedPayment } = formData;
+    const { name, time, cuisine, activity, budget, selectedPayment } = formData;
 
     return (
         <form onSubmit={handleSubmit} className="pt-20 pl-10 bg-gray-100">
@@ -72,16 +55,34 @@ const matching = () => {
                     <option value="6">6 hours</option>
                 </select>
             </div>
-
+            
             <div className="mb-4">
+                <label htmlFor="activity" className="block mb-2 font-bold text-gray-700">
+                    Activity
+                </label>
+                <select
+                    id="activity"
+                    className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    value={activity}
+                    onChange={(e) => setFormData({ ...formData, activity: e.target.value })}
+                >
+                    <option value="">Select an activity</option>
+                    {activities.map((activity) => (
+                        <option key={activity} value={activities.indexOf(activity)} />
+                    ))}
+                </select>
+            </div>
+            
+            {formData["activity"] == 11 ? (
+                <div className="mb-4">
                 <label htmlFor="cuisine" className="block mb-2 font-bold text-gray-700">
                     Cuisines
                 </label>
                 <select
                     id="cuisine"
                     className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    value={selectedCuisine}
-                    onChange={(e) => setFormData({ ...formData, selectedCuisine: e.target.value })}
+                    value={cuisine}
+                    onChange={(e) => setFormData({ ...formData, cuisine: e.target.value })}
                 >
                     <option value="">Select a cuisine</option>
                     {cuisines.map((cuisine) => (
@@ -89,6 +90,23 @@ const matching = () => {
                     ))}
                 </select>
             </div>
+            ) : (
+                <></>
+            )}
+
+            <div className="mb-4">
+                <label htmlFor="budget" className="block mb-2 font-bold text-gray-700">
+                    Budget
+                </label>
+                <input
+                    type="number"
+                    id="budget"
+                    className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    value={budget}
+                    onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                />
+            </div>
+
         </form>
     )
 }

@@ -2,16 +2,25 @@ import React from 'react'
 
 function Card(props) {
     return (
-        <div className="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden p-3 m-2">
-            <div className="sm:flex sm:items-center px-6 py-4">
-                {/* <img className="block mx-auto sm:mx-0 sm:flex-shrink-0 h-16 sm:h-24 rounded-full" src={props.image} alt="Profile picture"/> */}
-                    <div className="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left">
-                        <p className="text-xl leading-tight">{props.name}</p>
-                        <p className="text-sm leading-tight text-gray-600">{props.rating} stars </p>
-                    </div>
-            </div>
+        <div class="flex flex-col rounded-lg bg-white shadow-lg dark:bg-neutral-700 md:max-w-l md:flex-row">
+        <img
+          class="h-66 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+          src="https://i.ibb.co/qgW54Cv/FM7-8632-vert.jpg"
+          alt=""
+        />
+        <div class="flex flex-col justify-start p-6">
+          <h5 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
+            {props.name}
+          </h5>
+          <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+            
+          </p>{" "}
+          <br></br> <br></br>
+          <p class="text-xs text-neutral-500 dark:text-neutral-300">
+            Rating: {props.rating} stars
+          </p>
         </div>
-
+      </div>
     )
 }
 
