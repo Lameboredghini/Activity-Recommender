@@ -108,9 +108,11 @@ export default function Filter() {
   const [rating, setRating] = useState("3");
   const [distance, setDistance] = useState("15000");
   const [open, setOpen] = useState("true");
-  const [latitude, setLatitude] = useState(null);
+  const [latitude, setLatitude] = useState(43.689160);
+  const [longitude, setLongitude] = useState(-79.489843);
   const [getLocBool, setLocBool] = useState(false);
-  const [longitude, setLongitude] = useState(null);
+//   const [longitude, setLongitude] = useState(null);
+
   function handleChange(sectionId, optionId) {
     if (sectionId == "rating") {
       setRating(optionId);
@@ -142,6 +144,7 @@ export default function Filter() {
       setLongitude(position.coords.longitude);
       console.log("Latitude is :", position.coords.latitude);
       console.log("Longitude is :", position.coords.longitude);
+      // window.location.reload()
     });
   }, [getLocBool]);
 
@@ -362,7 +365,7 @@ export default function Filter() {
                 <form className="hidden lg:block">
                   <h3 className="sr-only">Categories</h3>
                   <div>
-                    <SimpleMap />
+                    <SimpleMap latitude={latitude} longitude={longitude} />
                   </div>
                   {filters.map((section) => (
                     <Disclosure
@@ -426,8 +429,8 @@ export default function Filter() {
                   ))}
                 </form>
 
-                {/* Product grid */}
-                <div className="lg:col-span-3">
+                {/* Product grid */}    
+                <div className="lg:col-span-3  ">
                   <button
                     onClick={() => {
                       getLocation();
@@ -435,12 +438,8 @@ export default function Filter() {
                   >
                     Enable Location
                   </button>
-                </div>
-              </div>
-            </section>
-          </main>
-        </div>
-        <>
+                  <br></br>
+                  <>
                     <button className="bg-blue-400 p-2 rounded-full" onClick={()=>{
                         getData()
                     }}>Fetch Data</button>
@@ -450,6 +449,73 @@ export default function Filter() {
                 return <Card name={item.name} rating={item.rating}/>    
             })}
         </>
+                  <div class="flex justify-center"></div>
+  <div
+    class="flex flex-col rounded-lg bg-white shadow-lg dark:bg-neutral-700 md:max-w-l md:flex-row">
+    <img
+      class="h-66 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+      src="https://i.ibb.co/qgW54Cv/FM7-8632-vert.jpg"
+      alt="" />
+    <div class="flex flex-col justify-start p-6">
+      <h5
+        class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
+        Activity Name: 1
+      </h5>
+      <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+      Nothing is made, nothing disappears. The same changes, at the same places, never stopping
+      </p>   <br></br>   <br></br>
+      <p class="text-xs text-neutral-500 dark:text-neutral-300">
+        Rating: 4.8
+      </p>
+    </div>
+  </div>
+  {/* <br></br>
+  <div
+    class="flex flex-row rounded-lg bg-white shadow-lg dark:bg-neutral-700 md:max-w-l md:flex-row">
+    <img
+      class="h-66 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+      src="https://i.ibb.co/qgW54Cv/FM7-8632-vert.jpg"
+      alt="" />
+    <div class="flex flex-col justify-start p-6">
+      <h5
+        class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
+        Activity Name: 2      </h5>
+      <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+      Nothing is made, nothing disappears. The same changes, at the same places, never stopping
+      </p>    <br></br>   <br></br>
+      <p class="text-xs text-neutral-500 dark:text-neutral-300">
+        Rating: 4.2
+      </p>
+    </div>
+  </div>
+  <div
+    class="flex flex-col rounded-lg bg-white shadow-lg dark:bg-neutral-700 md:max-w-l md:flex-row">
+    <img
+      class="h-66 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+      src="https://i.ibb.co/qgW54Cv/FM7-8632-vert.jpg"
+      alt="" />
+    <div class="flex flex-col justify-start p-6">
+      <h5
+        class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
+        Activity Name: 2      </h5>
+      <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+      Nothing is made, nothing disappears. The same changes, at the same places, never stopping
+      </p>    <br></br>   <br></br>
+      <p class="text-xs text-neutral-500 dark:text-neutral-300">
+        Rating: 4.2
+      </p>
+    </div>
+  </div> */}
+
+
+
+                </div>
+                
+              </div>
+            </section>
+          </main>
+        </div>
+   
       </div>
     </>
   );
