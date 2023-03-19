@@ -1,26 +1,26 @@
 import React, { useState } from "react";
 // import classNames from "classnames";
 
-const cuisines = ["Italian", "Mexican", "Japanese", "Chinese", "Indian"];
-const activities = ["Hiking", "Swimming", "Sightseeing", "Museum", "Shopping"];
-const paymentOptions = ["Cheap", "Moderate", "Expensive", "Luxury"];
+const cuisines = ["Any", "Indian", "Seafood", "italian", "Japanese", "Sushi", "Chinese", "Mexican", "Thai", "French", "Middle Eastern", "Vietnamese", "Hamburger", "Pizza"]
+const activities = ["parks", "museums", "galleries", "shopping centers", "theaters", "amusement_parks", "swimming_pools", "sports_clubs", "salons", "cinemas", "bars", "restaurants", "clubs","cafes"]
+const payments = ["$","$$","$$$","$$$$"];
 
 const matching = () => {
     const [formData, setFormData] = useState({
         name: "",
         time: "1",
-        activity: "",
         cuisine: "",
-        budget: "",
-        selectedPayment: "",
+        activity: "",
+        budget: 1000,
+        payment: "",
     });
-
+    console.log('formdata ',formData)
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
     };
 
-    const { name, time, cuisine, activity, budget, selectedPayment } = formData;
+    const { name, time, cuisine, activity, budget, payment } = formData;
 
     return (
         <form onSubmit={handleSubmit} className="pt-20 pl-10 bg-gray-100">
@@ -58,7 +58,7 @@ const matching = () => {
             
             <div className="mb-4">
                 <label htmlFor="activity" className="block mb-2 font-bold text-gray-700">
-                    Activity
+                    Activities
                 </label>
                 <select
                     id="activity"
@@ -68,7 +68,7 @@ const matching = () => {
                 >
                     <option value="">Select an activity</option>
                     {activities.map((activity) => (
-                        <option key={activity} value={activities.indexOf(activity)} />
+                        <option key={activity} value={activities.indexOf(activity)} >{activity}</option>
                     ))}
                 </select>
             </div>
@@ -86,7 +86,7 @@ const matching = () => {
                 >
                     <option value="">Select a cuisine</option>
                     {cuisines.map((cuisine) => (
-                        <option key={cuisine} value={cuisine} />
+                        <option key={cuisine} value={cuisine} >{cuisine}</option>
                     ))}
                 </select>
             </div>
@@ -107,6 +107,28 @@ const matching = () => {
                 />
             </div>
 
+            {formData["activity"] == 10 ? (
+            <div className="mb-4">
+                <label htmlFor="payment" className="block mb-2 font-bold text-gray-700">
+                    Payment
+                </label>
+                <select
+                    id="payment"
+                    className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    value={payment}
+                    onChange={(e) => {setFormData({ ...formData, payment: e.target.value })}}
+                >
+                    <option value="">Select your payment limit</option>
+                    {payments.map((level) => {
+                        console.log(level)
+                        return(
+                        <option key={level} value={level} >{level}</option>    
+                    )})}
+                </select>
+            </div>
+            ) : (
+                <></>
+            )}
         </form>
     )
 }
