@@ -3,18 +3,18 @@ import React, { useState } from "react";
 
 const cuisines = ["Italian", "Mexican", "Japanese", "Chinese", "Indian"];
 const activities = ["Hiking", "Swimming", "Sightseeing", "Museum", "Shopping"];
-const paymentOptions = ["Cheap", "Moderate", "Expensive", "Luxury"];
+const payments = ["$","$$","$$$","$$$$"];
 
 const matching = () => {
     const [formData, setFormData] = useState({
         name: "",
         time: "1",
-        selectedCuisine: "",
-        selectedActivities: [],
-        budget: "",
-        selectedPayment: "",
+        cuisine: "",
+        activity: 1,
+        budget: 1000,
+        payment: "",
     });
-
+    console.log('formdata ',formData)
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
@@ -37,7 +37,7 @@ const matching = () => {
         });
     };
 
-    const { name, time, selectedCuisine, selectedActivities, budget, selectedPayment } = formData;
+    const { name, time, cuisine, activity, budget, payment } = formData;
 
     return (
         <form onSubmit={handleSubmit} className="pt-20 pl-10 bg-gray-100">
@@ -80,13 +80,31 @@ const matching = () => {
                 <select
                     id="cuisine"
                     className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    value={selectedCuisine}
-                    onChange={(e) => setFormData({ ...formData, selectedCuisine: e.target.value })}
+                    value={cuisine}
+                    onChange={(e) => setFormData({ ...formData, cuisine: e.target.value })}
                 >
                     <option value="">Select a cuisine</option>
                     {cuisines.map((cuisine) => (
-                        <option key={cuisine} value={cuisine} />
+                        <option key={cuisine} value={cuisine} >{cuisine}</option>
                     ))}
+                </select>
+            </div>
+            <div className="mb-4">
+                <label htmlFor="payment" className="block mb-2 font-bold text-gray-700">
+                    Payment
+                </label>
+                <select
+                    id="payment"
+                    className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    value={payment}
+                    onChange={(e) => {setFormData({ ...formData, payment: e.target.value })}}
+                >
+                    <option value="">Select your payment limit</option>
+                    {payments.map((level) => {
+                        console.log(level)
+                        return(
+                        <option key={level} value={level} >{level}</option>    
+                    )})}
                 </select>
             </div>
         </form>
