@@ -48,6 +48,9 @@ const NavbarDark = () => {
           <li className="p-4">
             <Link href="/contact">Contact</Link>
           </li>
+          <li className="p-4">
+            <Link href="/matching">Match</Link>
+          </li>
         </ul>
 
         {/* Mobile Button */}
