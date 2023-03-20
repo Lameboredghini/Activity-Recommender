@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import NavbarDark from "../components/NavbarDark";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 const Login1 = () => {
   const [username, setUsername] = useState("");
@@ -7,9 +9,23 @@ const Login1 = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   console.log(username, password)
-  const handleLogin = (e) => {
+  const router=useRouter()
+  const handleLogin = async(e) => {
     e.preventDefault();
-    setIsLogin(true)
+    console.log('inside handle login')
+    const formData={
+        "username":username,
+        "password":password
+    }
+    let response=await axios.post('http://127.0.0.1:8000/login',formData)
+    console.log('response', response)
+    if(response.data.message==="success"){
+        setIsLogin(true)
+        router.push('http://127.0.0.1:3000/search')
+    }
+    else{
+        alert("Invalid credentials!")
+    }
 };
 
   return (
@@ -62,8 +78,8 @@ const Login1 = () => {
                   <div className="relative">
                     <button
                       className="bg-blue-500 text-white rounded-md px-2 py-1"
-                      onClick={() => {
-                        handleLogin;
+                      onClick={(e) => {
+                        handleLogin(e);
                       }}
                     >
                       Submit
