@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import matchingresult from "./matchingResults";
+import { useRouter } from "next/router";
+import NavbarDark from "../components/NavbarDark";
 // import classNames from "classnames";
 
 const cuisines = ["Any", "Indian", "Seafood", "italian", "Japanese", "Sushi", "Chinese", "Mexican", "Thai", "French", "Middle Eastern", "Vietnamese", "Hamburger", "Pizza"]
@@ -6,6 +9,7 @@ const activities = ["parks", "museums", "galleries", "shopping centers", "theate
 const payments = ["$","$$","$$$","$$$$"];
 
 const matching = () => {
+    const router = useRouter()
     const [formData, setFormData] = useState({
         name: "",
         time: "1",
@@ -18,11 +22,14 @@ const matching = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
+        router.push("http://localhost:3000/matchingResults")
     };
 
     const { name, time, cuisine, activity, budget, payment } = formData;
 
     return (
+        <>
+        <NavbarDark />
         <form onSubmit={handleSubmit} className="pt-20 pl-10 bg-gray-100">
             <div className="mb-4">
                 <label htmlFor="name" className="block mb-2 font-bold text-gray-700">
@@ -129,7 +136,12 @@ const matching = () => {
             ) : (
                 <></>
             )}
+
+            <div className="mb-4">
+                <input type="submit" className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"></input>
+            </div>
         </form>
+        </>
     )
 }
 
