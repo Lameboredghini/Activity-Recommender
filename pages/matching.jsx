@@ -201,7 +201,11 @@ const matching = () => {
                             )
                         })}</div>
                         <h2 className="text-center text-xl mt-4">and you should go to:</h2>
-                        <div className="text-center text-2xl">{data["recommended"]}</div>
+                        <div className="text-center text-2xl">{data["recommended"].map((item)=>{
+                            return(
+                                <span>{item}, </span>
+                            )
+                        })}</div>
                     </div>
                 </>
             )}
