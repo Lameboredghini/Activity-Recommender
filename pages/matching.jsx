@@ -14,7 +14,9 @@ const matching = () => {
         name: "",
         time: "1",
         cuisine: "",
-        activity: "",
+        activity1: "",
+        activity2: "",
+        activity3: "",
         budget: 1000,
         payment: "",
     });
@@ -25,7 +27,7 @@ const matching = () => {
         router.push("http://localhost:3000/matchingResults")
     };
 
-    const { name, time, cuisine, activity, budget, payment } = formData;
+    const { name, time, cuisine, activity1, activity2, activity3, budget, payment } = formData;
 
     return (
         <>
@@ -64,14 +66,48 @@ const matching = () => {
             </div>
             
             <div className="mb-4">
-                <label htmlFor="activity" className="block mb-2 font-bold text-gray-700">
+                <label htmlFor="activity1" className="block mb-2 font-bold text-gray-700">
                     Activities
                 </label>
                 <select
-                    id="activity"
+                    id="activity1"
                     className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    value={activity}
-                    onChange={(e) => setFormData({ ...formData, activity: e.target.value })}
+                    value={activity1}
+                    onChange={(e) => setFormData({ ...formData, activity1: e.target.value })}
+                >
+                    <option value="">Select an activity</option>
+                    {activities.map((activity) => (
+                        <option key={activity} value={activities.indexOf(activity)} >{activity}</option>
+                    ))}
+                </select>
+            </div>
+
+            <div className="mb-4">
+                <label htmlFor="activity2" className="block mb-2 font-bold text-gray-700">
+                    Activities
+                </label>
+                <select
+                    id="activity2"
+                    className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    value={activity2}
+                    onChange={(e) => setFormData({ ...formData, activity2: e.target.value })}
+                >
+                    <option value="">Select an activity</option>
+                    {activities.map((activity) => (
+                        <option key={activity} value={activities.indexOf(activity)} >{activity}</option>
+                    ))}
+                </select>
+            </div>
+
+            <div className="mb-4">
+                <label htmlFor="activity3" className="block mb-2 font-bold text-gray-700">
+                    Activities
+                </label>
+                <select
+                    id="activity3"
+                    className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    value={activity3}
+                    onChange={(e) => setFormData({ ...formData, activity3: e.target.value })}
                 >
                     <option value="">Select an activity</option>
                     {activities.map((activity) => (
@@ -80,7 +116,7 @@ const matching = () => {
                 </select>
             </div>
             
-            {formData["activity"] == 11 ? (
+            {formData["activity1"] == 11 || formData["activity2"] == 11 || formData["activity3"] == 11 ? (
                 <div className="mb-4">
                 <label htmlFor="cuisine" className="block mb-2 font-bold text-gray-700">
                     Cuisines
@@ -114,7 +150,7 @@ const matching = () => {
                 />
             </div>
 
-            {formData["activity"] == 10 ? (
+            {formData["activity1"] == 10 || formData["activity2"] == 10 || formData["activity3"] == 10 ? (
             <div className="mb-4">
                 <label htmlFor="payment" className="block mb-2 font-bold text-gray-700">
                     Payment
